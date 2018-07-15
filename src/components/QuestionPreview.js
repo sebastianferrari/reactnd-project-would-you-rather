@@ -1,9 +1,10 @@
 import React from 'react'
+import './QuestionPreview.css'
 
 export default function QuestionPreview(props) {
   console.log('PROPS', props)
   return (
-    <div>
+    <div className='question-preview'>
       QuestionPreview
       <ul>
         <li>{props.question.id}</li>
@@ -11,6 +12,7 @@ export default function QuestionPreview(props) {
         <li>{props.question.optionOne.text}</li>
         <li>{props.question.optionTwo.text}</li>
       </ul>
+      <button className='btn btn-dark btn-block'>View Poll</button>
     </div>
   )
 }
