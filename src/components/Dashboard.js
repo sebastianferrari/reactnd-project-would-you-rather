@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import QuestionPreview from './QuestionPreview'
 
 class Dashboard extends Component {
   render() {
@@ -7,11 +8,11 @@ class Dashboard extends Component {
       <div>
         <h3>Dashboard</h3>
         <br />
-        {this.props.unansweredQuestionIds.map((id) => (
-          <p key={id}>
-            {id}
-          </p>
-        ))}
+        {this.props.unansweredQuestionIds.map((id) => {
+          const question = this.props.questions[id]
+          return (
+            <QuestionPreview key={id} question={question} />
+        )})}
       </div>
     )
   }
@@ -20,7 +21,8 @@ class Dashboard extends Component {
 function mapStateToProps({ questions }) {
   return {
     unansweredQuestionIds: Object.keys(questions)
-      .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+      .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
+    questions
   }
 }
 
