@@ -1,8 +1,15 @@
 export const SET_LOGGED_USER = 'SET_LOGGED_USER'
 
-export function setLoggedUser (id) {
+export function setLoggedUser (loggedUser) {
+  console.log('Action: setLoggedUser -> ', loggedUser)
   return {
     type: SET_LOGGED_USER,
-    id
+    loggedUser
   }
 }
+
+// export function handleSetLoggedUser(loggedUser) {
+//   return (dispatch) => {
+//     dispatch(setLoggedUser(loggedUser))
+//   }
+// }
