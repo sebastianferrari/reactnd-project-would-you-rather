@@ -3,42 +3,46 @@ import { connect } from 'react-redux'
 import { values } from '../utils/helpers'
 import { handleSetLoggedUser } from '../actions/loggedUser'
 
-class Login extends Component {
+class Login extends Component {  
   state = {
     selectedUser: ''
   }
 
   handleSetUser = (e) => {
     e.preventDefault()
+    const { dispatch, users } = this.props
 
-    const { dispatch } = this.props
+    let arrUsers = Array.from(values(users))
+    let user = arrUsers.filter((u) => 
+      u.id === this.state.selectedUser)[0]
 
-    console.log('setLoggedUser: ', this.state.selectedUser)
-    dispatch(handleSetLoggedUser(this.state.selectedUser))
+    dispatch(handleSetLoggedUser(user))
 
     // todo: redirect to dashboard
   }
 
   handleChange = (e) => {
-    let id = e.target.value;
+    let userId = e.target.value;
     this.setState(() => ({
-      selectedUser: id
+      selectedUser: userId
     }))
   }
 
   render() {
     const { users } = this.props
-
+    console.log('Users ==> ', this.props.users)
     let arrUsers = Array.from(values(users));
+
+    console.log('SelectedUser -> ', this.state.selectedUser)
 
     return (
       <div>
         <h3>Login into "Would You Rather" app</h3>
         <form onSubmit={this.handleSetUser}>
           <select value={this.state.selectedUser} onChange={this.handleChange}>
-            <option value=''>Select an User</option>
+            <option value={''}>Select an User</option>
             {arrUsers.length > 0 && arrUsers.map((user) => (
-              <option key={user.id} value={user.name}>
+              <option key={user.id} value={user.id}>
                 {user.name}
               </option>
             ))}
@@ -56,4 +60,10 @@ class Login extends Component {
   }
 }
 
-export default connect()(Login)
+function mapStateToProps({ users }) {
+  return {
+    users
+  }
+}
+
+export default connect(mapStateToProps)(Login)

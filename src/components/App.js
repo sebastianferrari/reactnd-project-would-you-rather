@@ -15,8 +15,8 @@ class App extends Component {
     return (
       <div>
         <LoadingBar />
-        <div>Logged User: {this.props.loggedUser}</div>
-        <Login users={this.props.users} />
+        <div>Logged User: {this.props.loggedUser && this.props.loggedUser.name}</div>
+        <Login />
       </div>
     );
   }
