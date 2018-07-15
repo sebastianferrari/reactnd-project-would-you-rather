@@ -12,7 +12,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className='container'>
         <LoadingBar />
         <div>Logged User: {this.props.loggedUser && this.props.loggedUser.name}</div>
         {Object.keys(this.props.loggedUser).length === 0
