@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading'
 import { handleInitialData } from '../actions/shared'
 import Login from './Login'
+import Dashboard from './Dashboard'
 
 class App extends Component {
   componentDidMount() {
@@ -10,23 +11,26 @@ class App extends Component {
   }
 
   render() {
-    console.log('Users from App: ', this.props.users);
-
     return (
       <div>
         <LoadingBar />
         <div>Logged User: {this.props.loggedUser && this.props.loggedUser.name}</div>
-        <Login />
+        {Object.keys(this.props.loggedUser).length === 0
+          ? (
+            <Login />
+          )
+          : (
+            <Dashboard />
+          )}        
       </div>
     );
   }
 }
 
-function mapStateToProps({ loggedUser, users }) {
+function mapStateToProps({ loggedUser }) {
   return {
     loggedUser,
-    loading: loggedUser === null,
-    users
+    loading: loggedUser === null
   }
 }
 

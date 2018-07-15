@@ -30,10 +30,7 @@ class Login extends Component {
 
   render() {
     const { users } = this.props
-    console.log('Users ==> ', this.props.users)
     let arrUsers = Array.from(values(users));
-
-    console.log('SelectedUser -> ', this.state.selectedUser)
 
     return (
       <div>
