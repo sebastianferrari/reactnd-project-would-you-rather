@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { values } from '../utils/helpers'
-import { setLoggedUser } from '../actions/loggedUser'
+import { handleSetLoggedUser } from '../actions/loggedUser'
 
 class Login extends Component {
   state = {
@@ -11,8 +11,10 @@ class Login extends Component {
   handleSetUser = (e) => {
     e.preventDefault()
 
+    const { dispatch } = this.props
+
     console.log('setLoggedUser: ', this.state.selectedUser)
-    setLoggedUser(this.state.selectedUser)
+    dispatch(handleSetLoggedUser(this.state.selectedUser))
 
     // todo: redirect to dashboard
   }
