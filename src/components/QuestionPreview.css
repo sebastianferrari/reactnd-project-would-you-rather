@@ -1,6 +1,21 @@
 .question-preview {
   border: 1px solid #333;
-  padding: 20px;
   margin-bottom: 20px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
+  height: 206px;
+}
+
+.question-preview-header {
+  background-color: #ddd;
+  padding: 10px 20px;
+}
+
+.question-preview img {
+  width: 160px;
+  height: 160px;
+  float: left;
+}
+
+.question-preview p {
+  margin-left: 180px;
 }

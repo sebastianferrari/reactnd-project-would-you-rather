@@ -11,18 +11,24 @@ class Dashboard extends Component {
         {this.props.unansweredQuestionIds.map((id) => {
           const question = this.props.questions[id]
           return (
-            <QuestionPreview key={id} question={question} />
+            <QuestionPreview 
+              key={id} 
+              question={question} 
+              userAvatar={this.props.users[question.author].avatarURL}
+              userFullName={this.props.users[question.author].name}
+            />
         )})}
       </div>
     )
   }
 }
 
-function mapStateToProps({ questions }) {
+function mapStateToProps({ questions, users }) {
   return {
     unansweredQuestionIds: Object.keys(questions)
       .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
-    questions
+    questions,
+    users
   }
 }
 
