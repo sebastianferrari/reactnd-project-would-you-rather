@@ -4,6 +4,7 @@ import LoadingBar from 'react-redux-loading'
 import { handleInitialData } from '../actions/shared'
 import Login from './Login'
 import Dashboard from './Dashboard'
+import Question from './Question'
 
 class App extends Component {
   componentDidMount() {
@@ -17,7 +18,8 @@ class App extends Component {
         <div>Logged User: {this.props.loggedUser && this.props.loggedUser.name}</div>
         {Object.keys(this.props.loggedUser).length === 0
           ? (
-            <Login />
+            // <Login />
+            <Question id={'6ni6ok3ym7mf1p33lnez'} />
           )
           : (
             <Dashboard />
