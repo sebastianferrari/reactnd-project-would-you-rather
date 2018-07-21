@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { handleSetLoggedUser } from '../actions/loggedUser'
 
 class Nav extends Component {
+  handleLogout = (e) => {
+    e.preventDefault()
+    this.props.dispatch(handleSetLoggedUser(null))
+    return <Redirect to='/' />
+  }
+
   render() {
     const { loggedUser } = this.props
 
@@ -34,9 +41,10 @@ class Nav extends Component {
           </li>
           {loggedUser && (
             <li>
-              <NavLink to='/' exact>
+              {/* <NavLink to='/' exact>
                 Logout
-              </NavLink>
+              </NavLink> */}
+              <a href='#' onClick={this.handleLogout}>Logout</a>
             </li>
           )}
         </ul>

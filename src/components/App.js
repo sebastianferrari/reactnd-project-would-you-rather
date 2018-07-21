@@ -20,8 +20,7 @@ class App extends Component {
         <Fragment>
           <LoadingBar />
           <div className='container'>
-            {/* <div>Logged User: {this.props.loggedUser && this.props.loggedUser.name}</div> */}
-            {Object.keys(this.props.loggedUser).length === 0
+            {this.props.loggedUser === null || Object.keys(this.props.loggedUser).length === 0
               ? (
                 <Login />
               )
