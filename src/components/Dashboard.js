@@ -23,9 +23,19 @@ class Dashboard extends Component {
   }
 }
 
-function mapStateToProps({ questions, users }) {
+function mapStateToProps({ questions, users, loggedUser }) {
+  const userId = loggedUser.id;
+
   return {
     unansweredQuestionIds: Object.keys(questions)
+      .filter(key => {
+        if (!questions[key].optionOne.votes.includes(userId)
+            && !questions[key].optionTwo.votes.includes(userId)) {
+              return key
+            }
+      })
+      .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
+    answeredQuestions: Object.keys(questions)
       .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
     questions,
     users

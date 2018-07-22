@@ -31,8 +31,7 @@ class NewQuestion extends Component {
 
     const { option1Text, option2Text } = this.state
     const { dispatch } = this.props
-    console.log('OPTIONS --> ', option1Text + ' - ' + option2Text)
-
+    
     dispatch(handleAddQuestion(option1Text, option2Text))
 
     this.setState(() => ({
