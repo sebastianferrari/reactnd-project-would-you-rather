@@ -59,7 +59,11 @@ class Question extends Component {
               {question && user && (
                 <form>
                   <div>{user.name} asks:</div>
-                  <img src={user.avatarURL} height={160} width={160} />
+                  <img
+                    alt={user.name} 
+                    src={user.avatarURL} 
+                    height={160} 
+                    width={160} />
                   <h4>Would You Rather ...</h4>
                   <div>
                     <input type='radio' name='option' value='1' />{question.optionOne.text} <br/>

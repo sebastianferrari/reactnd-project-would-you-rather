@@ -31,14 +31,17 @@ class Nav extends Component {
               Leader Board
             </NavLink>
           </li>
-          <li>
-            {loggedUser && (
+          {loggedUser && (
+            <li>
               <div>
-                <span>Hello, {loggedUser.name}! </span> 
-                <img src={loggedUser.avatarURL} height={30} width={30} /> 
-              </div>            
-            )}
-          </li>
+                <span>Hello, {loggedUser.name}! </span>
+                <img
+                  alt={loggedUser.name}
+                  src={loggedUser.avatarURL}
+                  height={30} width={30} />
+              </div>
+            </li>
+          )}
           {loggedUser && (
             <li>
               {/* <NavLink to='/' exact>
