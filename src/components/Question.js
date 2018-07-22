@@ -3,30 +3,16 @@ import { connect } from 'react-redux'
 
 class Question extends Component {
   state = {
-    answered: true
+    answered: false
   }
 
   render() {
     const { users, questions, loggedUserId } = this.props
     const question = questions[this.props.id]
     const user = question && users[question.author]
-    const optionOneVotes = question && question.optionOne.votes
-    const optionTwoVotes = question && question.optionTwo.votes
-    console.log('QUESTION ==> ', question)
-    console.log('VOTES    ==> ', optionOneVotes)
 
-    // todo: if logged users is included in any
-    //       of the voted options this questions
-    //       is answered.
-    if (
-        (optionOneVotes
-          && optionOneVotes.length > 0 
-          && optionOneVotes.includes(loggedUserId))
-        || 
-        (optionTwoVotes
-          && optionTwoVotes.length > 0
-          && optionTwoVotes.includes(loggedUserId))
-     ) {
+    if (question.optionOne.votes.includes(loggedUserId)
+      || question.optionTwo.votes.includes(loggedUserId)) {
       this.setState(() => {
         answered: true
       })
@@ -60,27 +46,30 @@ class Question extends Component {
                 <form>
                   <div>{user.name} asks:</div>
                   <img
-                    alt={user.name} 
-                    src={user.avatarURL} 
-                    height={160} 
-                    width={160} />
+                    alt={user.name}
+                    src={user.avatarURL}
+                    height={120}
+                    width={120} />
                   <h4>Would You Rather ...</h4>
                   <div>
-                    <input type='radio' name='option' value='1' />{question.optionOne.text} <br/>
-                    <input type='radio' name='option' value='2' />{question.optionTwo.text} <br/>
+                    <input type='radio' name='option' value='1' />{question.optionOne.text} <br />
+                    <input type='radio' name='option' value='2' />{question.optionTwo.text} <br />
                   </div>
                   <button type='submit'>Submit</button>
                 </form>
               )}
-            </div>            
+            </div>
           )}
       </div>
     )
   }
 }
 
-function mapStateToProps({ users, questions, loggedUser }) {
+function mapStateToProps({ users, questions, loggedUser }, props) {
+  const { questionId } = props.match.params
+
   return {
+    id: questionId,
     users,
     questions,
     loggedUserId: loggedUser.id

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './QuestionPreview.css'
 
 export default function QuestionPreview(props) {
@@ -17,7 +18,10 @@ export default function QuestionPreview(props) {
       <p>
         ...{props.question.optionOne.text}...
       </p>
-      <button className='btn btn-dark'>View Poll</button>
+      <Link 
+        className='btn btn-dark'
+        to={`/question/${props.question.id}`}
+      >View Poll</Link>
     </div>
   )
 }
