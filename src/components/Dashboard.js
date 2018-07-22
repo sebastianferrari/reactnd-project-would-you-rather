@@ -8,7 +8,7 @@ class Dashboard extends Component {
       <div>
         <h3>Dashboard</h3>
         <br />
-        {this.props.unansweredQuestionIds.map((id) => {
+        {this.props.unansweredQuestionsIds.map((id) => {
           const question = this.props.questions[id]
           return (
             <QuestionPreview 
@@ -27,7 +27,7 @@ function mapStateToProps({ questions, users, loggedUser }) {
   const userId = loggedUser.id;
 
   return {
-    unansweredQuestionIds: Object.keys(questions)
+    unansweredQuestionsIds: Object.keys(questions)
       .filter(key => {
         if (!questions[key].optionOne.votes.includes(userId)
             && !questions[key].optionTwo.votes.includes(userId)) {
@@ -35,7 +35,13 @@ function mapStateToProps({ questions, users, loggedUser }) {
             }
       })
       .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
-    answeredQuestions: Object.keys(questions)
+    answeredQuestionsIds: Object.keys(questions)
+      .filter(key => {
+        if (questions[key].optionOne.votes.includes(userId)
+            || questions[key].optionTwo.votes.includes(userId)) {
+              return key
+            }
+      })
       .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
     questions,
     users
