@@ -1,6 +1,7 @@
 import { 
   RECEIVE_QUESTIONS,
-  ADD_QUESTION
+  ADD_QUESTION,
+  ADD_QUESTION_ANSWER
 } from "../actions/questions";
 
 export default function questions(state = [], action) {
@@ -11,10 +12,29 @@ export default function questions(state = [], action) {
         ...action.questions
       }
     case ADD_QUESTION:
-      console.log('ACTION => ', action.question)
       return {
         ...state,
         [action.question.id]: action.question
+      }
+    case ADD_QUESTION_ANSWER:
+      console.log('ACTION FROM REDUCER =>', action)
+      return {
+        ...state,
+        [action.qid]: {
+          ...state[action.qid],
+          optionOne: {
+            ...state[action.qid].optionOne,
+            votes: action.answer === 'optionOne'
+              ? state[action.qid].optionOne.votes.concat([action.authedUser])
+              : state[action.qid].optionOne.votes
+          },
+          optionTwo: {
+            ...state[action.qid].optionTwo,
+            votes: action.answer === 'optionTwo'
+              ? state[action.qid].optionTwo.votes.concat([action.authedUser])
+              : state[action.qid].optionTwo.votes
+          }
+        }
       }
     default:
       return state
