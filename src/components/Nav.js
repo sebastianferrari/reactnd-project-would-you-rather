@@ -24,10 +24,10 @@ class Nav extends Component {
           <li>
             <NavLink to='/add' exact activeClassName='active'>
               New Question
-          </NavLink>
+            </NavLink>
           </li>
           <li>
-            <NavLink to='leaderboard' exact activeClassName='active'>
+            <NavLink to='/leaderboard' exact activeClassName='active'>
               Leader Board
             </NavLink>
           </li>
@@ -47,7 +47,7 @@ class Nav extends Component {
               {/* <NavLink to='/' exact>
                 Logout
               </NavLink> */}
-              <a href='#' onClick={this.handleLogout}>Logout</a>
+              <a href='/' onClick={this.handleLogout}>Logout</a>
             </li>
           )}
         </ul>

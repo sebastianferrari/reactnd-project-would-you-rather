@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAddQuestionAnswer } from '../actions/questions'
-import { addAnswer } from '../actions/users'
 
 class Question extends Component {
   state = {
@@ -33,17 +32,22 @@ class Question extends Component {
     }))
   }
 
-  render() {
-    const { users, questions, loggedUserId } = this.props
+  componentWillMount() {
+    const { questions, loggedUserId } = this.props
     const question = questions[this.props.id]
-    const user = question && users[question.author]
-
+    
     if (question.optionOne.votes.includes(loggedUserId)
       || question.optionTwo.votes.includes(loggedUserId)) {
-      this.setState(() => {
+      this.setState(() => ({
         answered: true
-      })
+      }))
     }
+  }
+
+  render() {
+    const { users, questions } = this.props
+    const question = questions[this.props.id]
+    const user = question && users[question.author]
 
     return (
       <div>
@@ -54,7 +58,11 @@ class Question extends Component {
               {question && user && (
                 <div>
                   <div>Asked by {user.name}</div>
-                  <img src={user.avatarURL} width={120} height={120} />
+                  <img
+                    src={user.avatarURL}
+                    alt={user.name}
+                    width={120} height={120}
+                  />
                   <h4>Result</h4>
                   <p>Would Your Rather {question.optionOne.text} <br />
                     <span>Quantity {question.optionOne.votes.length}</span>
@@ -80,20 +88,20 @@ class Question extends Component {
                   <h4>Would You Rather ...</h4>
                   <form onSubmit={this.handleSubmit}>
                     <div>
-                      <input 
-                        type='radio' 
-                        name='option' 
+                      <input
+                        type='radio'
+                        name='option'
                         value='optionOne'
                         onChange={this.handleOptionChange}
                       />{question.optionOne.text} <br />
-                      <input 
-                        type='radio' 
-                        name='option' 
+                      <input
+                        type='radio'
+                        name='option'
                         value='optionTwo'
                         onChange={this.handleOptionChange}
                       />{question.optionTwo.text} <br />
                     </div>
-                    <button 
+                    <button
                       type='submit'
                       disabled={this.state.selectedOption === ''
                         ? 'disabled'

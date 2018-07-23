@@ -10,7 +10,10 @@ export default function QuestionPreview(props) {
         {props.userFullName} asks:
       </div>
       <div>
-        <img src={props.userAvatar} />
+        <img 
+          src={props.userAvatar} 
+          alt={props.userFullName}
+        />
       </div>
       <p>
         Would Your Rather

@@ -28,20 +28,15 @@ function mapStateToProps({ questions, users, loggedUser }) {
 
   return {
     unansweredQuestionsIds: Object.keys(questions)
-      .filter(key => {
-        if (!questions[key].optionOne.votes.includes(userId)
-            && !questions[key].optionTwo.votes.includes(userId)) {
-              return key
-            }
-      })
+      .filter(key =>
+        !questions[key].optionOne.votes.includes(userId)
+        && !questions[key].optionTwo.votes.includes(userId))
       .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
     answeredQuestionsIds: Object.keys(questions)
-      .filter(key => {
-        if (questions[key].optionOne.votes.includes(userId)
-            || questions[key].optionTwo.votes.includes(userId)) {
-              return key
-            }
-      })
+      .filter(key =>
+        questions[key].optionOne.votes.includes(userId)
+        || questions[key].optionTwo.votes.includes(userId)
+      )
       .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
     questions,
     users
