@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './QuestionPreview.css'
+//import './QuestionPreview.css'
 
 export default function QuestionPreview(props) {
   console.log('PROPS', props)

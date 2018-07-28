@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { values } from '../utils/helpers'
 import { handleSetLoggedUser } from '../actions/loggedUser'
 import './Login.css'
+import { Button } from 'react-bootstrap'
 
 class Login extends Component {  
   state = {
@@ -36,7 +37,12 @@ class Login extends Component {
 
     return (
       <div className='login-container'>
-        <h3>Would You Rather</h3>
+        <h3>Would You Rather...</h3>
+        <img
+          alt='Would You Rather'
+          src='../../icon-reactjs.svg'
+          height={100} width={100}
+        />
         <form onSubmit={this.handleSetUser}>
           <select 
             value={this.state.selectedUser} 
@@ -51,14 +57,14 @@ class Login extends Component {
             ))}
           </select>
           <br />
-          <input
+          <Button 
+            bsStyle="primary"
+            bsSize='large'
             type="submit"
-            value="Login"
-            className='btn btn-dark btn-block'
             disabled={this.state.selectedUser === ''
-              ? 'disabled'
-              : ''}
-          />
+              ? true
+              : false}
+          >Login</Button>
         </form>
       </div>
     )
