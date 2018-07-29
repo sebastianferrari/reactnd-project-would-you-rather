@@ -1,21 +1,25 @@
-.question-preview {
-  border: 1px solid #333;
-  margin-bottom: 20px;
-  /* border-radius: 5px; */
-  height: 206px;
+table.mainTable {
+  border-bottom: #ddd solid 2px;
 }
 
-.question-preview-header {
-  background-color: #ddd;
-  padding: 10px 20px;
+table.mainTable > tbody > tr:last-of-type > td:first-of-type {
+  vertical-align: middle;
+  width: 150px;
 }
 
-.question-preview img {
-  width: 160px;
-  height: 160px;
-  float: left;
+table.mainTable > tbody > tr:last-of-type > td:last-of-type {
+
 }
 
-.question-preview p {
-  margin-left: 180px;
+table.innerTable {
+  border-left: #ccc solid 1px;
+  margin-bottom: 0;
+}
+
+table.innerTable > tbody > tr:first-of-type {
+  font-size: 20px;
+}
+
+table.innerTable > tbody tr td {
+  border: none;
 }

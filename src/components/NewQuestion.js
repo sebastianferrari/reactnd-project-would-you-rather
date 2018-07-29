@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { handleAddQuestion } from '../actions/questions'
+import { 
+  FormControl,
+  Button
+} from 'react-bootstrap'
 
 class NewQuestion extends Component {
   state = {
@@ -46,25 +50,36 @@ class NewQuestion extends Component {
       return <Redirect to='/' />
     }
 
+    let center = {
+      textAlign: 'center',
+      maxWidth: '500px',
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    }
+
     return (
-      <div>
-        <h1>Create New Question</h1>
+      <div style={center}>
+        <h2>Create New Question</h2>
         <p>Complete the Question:</p>
-        <h2>Would you rather ...</h2>
+        <h3>Would you rather ...</h3>
         <form onSubmit={this.handleSubmit}>
-          <input
+          <FormControl
             type='text'
+            placeholder='Option 1'
             onChange={this.handleOption1Change}
           />
-          OR
-          <input
+          ... OR ...
+          <FormControl
             type='text'
+            placeholder='Option 2'
             onChange={this.handleOption2Change}
           />
-          <button 
+          <br />
+          <Button 
             type='submit'
+            bsStyle='primary'
             disabled={this.state.option1Text === '' || this.state.option2Text === ''}
-          >Submit</button>
+          >Submit</Button>
         </form>
       </div>
     )
