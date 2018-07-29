@@ -1,0 +1,47 @@
+table#item-table {
+  border-bottom: #ddd solid 2px;
+}
+
+table#item-table > thead > tr > th {
+  font-size: 20px;
+}
+
+table#item-table > tbody > tr > td {
+  border-top: none;
+  vertical-align: middle;
+}
+
+table#info-table {
+  margin-bottom: 0;
+}
+
+table#info-table > tbody > tr > td {
+  border-top: none;
+  vertical-align: middle;
+  font-size: 16px;
+  line-height: 2;
+}
+
+table#score-table {
+  margin-bottom: 0;
+  min-width: 60px;
+  max-width: 120px;
+}
+
+table#score-table > tbody > tr > td {
+  vertical-align: middle;
+  border-top: none;
+  text-align: center;
+}
+
+table#score-table > tbody > tr:first-of-type > td {
+  font-size: 12px;
+  background-color: #eee;
+  border: lightgray solid 1px;
+}
+
+table#score-table > tbody > tr:last-of-type > td {
+  font-size: 40px;
+  font-weight: 600;
+  border: lightgray solid 1px;
+}

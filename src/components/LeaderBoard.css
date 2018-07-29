@@ -1,0 +1,11 @@
+.leaderboard-list table#item-table:nth-child(1) table#score-table > tbody > tr:last-of-type > td {
+  background-color: gold;
+}
+
+.leaderboard-list table#item-table:nth-child(2) table#score-table > tbody > tr:last-of-type > td {
+  background-color: #cd7f32;
+}
+
+.leaderboard-list table#item-table:nth-child(3) table#score-table > tbody > tr:last-of-type > td {
+  background-color: silver;
+}
