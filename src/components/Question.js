@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAddQuestionAnswer } from '../actions/questions'
+import './Question.css'
+import {
+  FormGroup,
+  Radio,
+  Image,
+  Button
+} from 'react-bootstrap'
 
 class Question extends Component {
   state = {
@@ -75,38 +82,39 @@ class Question extends Component {
             </div>
           )
           : (
-            <div>
-              <h3>Question Pending</h3>
+            <div className='questionPendingContainer'>
               {question && user && (
                 <div>
-                  <div>{user.name} asks:</div>
-                  <img
+                  <h3>{user.name} asks:</h3>
+                  <Image
                     alt={user.name}
                     src={user.avatarURL}
+                    circle
                     height={120}
                     width={120} />
                   <h4>Would You Rather ...</h4>
                   <form onSubmit={this.handleSubmit}>
-                    <div>
-                      <input
-                        type='radio'
-                        name='option'
-                        value='optionOne'
-                        onChange={this.handleOptionChange}
-                      />{question.optionOne.text} <br />
-                      <input
-                        type='radio'
-                        name='option'
-                        value='optionTwo'
-                        onChange={this.handleOptionChange}
-                      />{question.optionTwo.text} <br />
+                    <div className='radioFormGroup'>
+                      <FormGroup>
+                        <Radio 
+                          name='radioGroup'
+                          value='optionOne'
+                          onChange={this.handleOptionChange}
+                        >{question.optionOne.text}</Radio>
+                        <Radio 
+                          name='radioGroup'
+                          value='optionTwo'
+                          onChange={this.handleOptionChange}
+                        >{question.optionTwo.text}</Radio>
+                      </FormGroup>
                     </div>
-                    <button
+                    <Button
                       type='submit'
+                      bsStyle='primary'
                       disabled={this.state.selectedOption === ''
-                        ? 'disabled'
-                        : ''}
-                    >Submit</button>
+                        ? true
+                        : false}
+                    >Submit</Button>
                   </form>
                 </div>
               )}

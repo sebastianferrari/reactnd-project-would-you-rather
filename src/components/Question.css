@@ -1,0 +1,17 @@
+.questionPendingContainer {
+  text-align: center;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.questionPendingContainer .radioFormGroup {
+  text-align: left;
+  border-top: #ddd solid 2px;
+  border-bottom: #ddd solid 2px;
+  margin-bottom: 10px;
+}
+
+.questionPendingContainer .radioFormGroup > .form-group {
+  margin-bottom: 0;
+}
