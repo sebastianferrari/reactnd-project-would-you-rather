@@ -7,7 +7,6 @@ import {
 } from 'react-bootstrap'
 
 export default function QuestionPreview(props) {
-  console.log('PROPS', props)
   return (
     <Table className='mainTable' responsive>
       <thead>

@@ -57,9 +57,6 @@ class Question extends Component {
     const question = questions[this.props.id]
     const user = question && users[question.author]
 
-    console.log('QUESTION ======> ', question)
-    console.log('USER ==========>', user)
-
     let ownOption;
     if (question.optionOne.votes.includes(user.id)) {
       ownOption = 'optionOne'
@@ -67,16 +64,11 @@ class Question extends Component {
       ownOption = 'optionTwo'
     }
 
-    console.log('OWNOPTION ======>', ownOption)
-
     let totOp1 = question.optionOne.votes.length
     let totOp2 = question.optionTwo.votes.length
     let total = totOp1 + totOp2
     let op1percent = Math.round((totOp1 * 100) / total)
     let op2percent = Math.round((totOp2 * 100) / total)
-
-    console.log('totOp1, totOp2, total, op1percent, op2percent', totOp1 + ' - ' 
-      + totOp2 + ' - ' + total + ' - ' + op1percent + ' - ' + op2percent)
 
     return (
       <div>

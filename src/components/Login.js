@@ -19,13 +19,10 @@ class Login extends Component {
       u.id === this.state.selectedUser)[0]
 
     dispatch(handleSetLoggedUser(user))
-
-    // todo: redirect to dashboard
   }
 
   handleChange = (e) => {
     let userId = e.target.value;
-    console.log('Selected User Id ===> ', userId)
     this.setState(() => ({
       selectedUser: userId
     }))

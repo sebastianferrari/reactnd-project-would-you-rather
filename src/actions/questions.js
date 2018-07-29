@@ -1,7 +1,12 @@
 import { showLoading, hideLoading } from 'react-redux-loading'
 import { saveQuestion, saveQuestionAnswer } from '../utils/api'
-import { addAnswer as addAnswerToUserAtArray } from './users'
-import { addAnswerToLoggedUser } from './loggedUser'
+import { 
+  addAnswer as addAnswerToUserAtArray,
+  addQuestion as addQuestionToUserAtArray 
+} from './users'
+import { 
+  addAnswerToLoggedUser 
+} from './loggedUser'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
@@ -32,7 +37,10 @@ export function handleAddQuestion(option1Text, option2Text) {
       optionTwoText: option2Text,
       author: loggedUser.id
     })
-      .then((question) => dispatch(addQuestion(question)))
+      .then((question) => {
+        dispatch(addQuestion(question))
+        dispatch(addQuestionToUserAtArray(loggedUser.id, question.id))
+      })
       .then(() => dispatch(hideLoading()))
   }
 }

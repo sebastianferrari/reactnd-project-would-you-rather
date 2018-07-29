@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import LeaderBoardItem from './LeaderBoardItem';
-import { values } from '../utils/helpers'
 import './LeaderBoard.css'
 
 class LeaderBoard extends Component {

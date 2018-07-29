@@ -13,7 +13,6 @@ class Dashboard extends Component {
   }
 
   handleSelect = (key) => {
-    // alert(`selected ${key}`);
     this.setState({ key });
   }
 
@@ -22,7 +21,7 @@ class Dashboard extends Component {
       <Tabs
         activeKey={this.state.key}
         onSelect={this.handleSelect}
-        id="controlled-tab"
+        id='controlled-tab'
       >
         <Tab eventKey={1} title='Unanswered Questions'>
           <br />

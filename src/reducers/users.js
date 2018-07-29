@@ -1,6 +1,7 @@
 import { 
   RECEIVE_USERS,
-  ADD_ANSWER
+  ADD_ANSWER,
+  ADD_QUESTION_TO_USER_QUESTIONS
 } from "../actions/users";
 
 export default function users(state = {}, action) {
@@ -11,8 +12,6 @@ export default function users(state = {}, action) {
         ...action.users
       } 
     case ADD_ANSWER:
-      console.log('ACTION FROM USERS REDUCER ==> ', action)
-      console.log('STATE FROM USERS REDUCER ==> ', state)
       const { authedUser, qid, answer } = action
 
       return {
@@ -20,6 +19,16 @@ export default function users(state = {}, action) {
         [authedUser]: {
           ...state[authedUser],
           answers: Object.assign({ [qid]: answer }, state[authedUser].answers)
+        }
+      }
+    case ADD_QUESTION_TO_USER_QUESTIONS:
+    console.log('action.authedUser ==> ', action.authedUser)
+    console.log('action.qid ==> ', action.qid)
+      return {
+        ...state,
+        [action.authedUser]: {
+          ...state[action.authedUser],
+          questions: [ ...state[action.authedUser].questions, action.qid ]
         }
       }
     default:
