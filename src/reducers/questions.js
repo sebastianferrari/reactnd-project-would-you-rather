@@ -17,7 +17,6 @@ export default function questions(state = [], action) {
         [action.question.id]: action.question
       }
     case ADD_QUESTION_ANSWER:
-      console.log('ACTION FROM REDUCER =>', action)
       return {
         ...state,
         [action.qid]: {

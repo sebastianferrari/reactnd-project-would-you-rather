@@ -22,8 +22,6 @@ export default function users(state = {}, action) {
         }
       }
     case ADD_QUESTION_TO_USER_QUESTIONS:
-    console.log('action.authedUser ==> ', action.authedUser)
-    console.log('action.qid ==> ', action.qid)
       return {
         ...state,
         [action.authedUser]: {
