@@ -1,0 +1,7 @@
+div#controlled-tab {
+  text-align: center;
+}
+
+div#controlled-tab ul li {
+  width: 50%;
+}

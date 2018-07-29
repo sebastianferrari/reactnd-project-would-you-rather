@@ -8,6 +8,7 @@ import Dashboard from './Dashboard'
 import Question from './Question'
 import NewQuestion from './NewQuestion'
 import Nav from './Nav'
+import './App.css'
 
 class App extends Component {
   componentDidMount() {
@@ -27,9 +28,11 @@ class App extends Component {
               : (
                 <Fragment>
                   <Nav />
-                  <Route path='/' exact component={Dashboard} />
-                  <Route path='/question/:questionId' exact component={Question} />
-                  <Route path='/add' exact component={NewQuestion} />
+                  <div className='innerContent'>
+                    <Route path='/' exact component={Dashboard} />
+                    <Route path='/question/:questionId' exact component={Question} />
+                    <Route path='/add' exact component={NewQuestion} />
+                  </div>
                 </Fragment>
               )}
           </div>
