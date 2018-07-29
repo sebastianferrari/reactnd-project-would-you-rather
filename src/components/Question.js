@@ -6,7 +6,8 @@ import {
   FormGroup,
   Radio,
   Image,
-  Button
+  Button,
+  ProgressBar
 } from 'react-bootstrap'
 
 class Question extends Component {
@@ -56,27 +57,60 @@ class Question extends Component {
     const question = questions[this.props.id]
     const user = question && users[question.author]
 
+    console.log('QUESTION ======> ', question)
+    console.log('USER ==========>', user)
+
+    let ownOption;
+    if (question.optionOne.votes.includes(user.id)) {
+      ownOption = 'optionOne'
+    } else if (question.optionTwo.votes.includes(user.id)) {
+      ownOption = 'optionTwo'
+    }
+
+    console.log('OWNOPTION ======>', ownOption)
+
+    let totOp1 = question.optionOne.votes.length
+    let totOp2 = question.optionTwo.votes.length
+    let total = totOp1 + totOp2
+    let op1percent = Math.round((totOp1 * 100) / total)
+    let op2percent = Math.round((totOp2 * 100) / total)
+
+    console.log('totOp1, totOp2, total, op1percent, op2percent', totOp1 + ' - ' 
+      + totOp2 + ' - ' + total + ' - ' + op1percent + ' - ' + op2percent)
+
     return (
       <div>
         {this.state.answered
           ? (
-            <div>
-              <h3>Question Result</h3>
+            <div className='questionResultContainer'>
               {question && user && (
                 <div>
-                  <div>Asked by {user.name}</div>
-                  <img
+                  <h3>Asked by {user.name}</h3>
+                  <Image
                     src={user.avatarURL}
                     alt={user.name}
+                    circle
                     width={120} height={120}
                   />
                   <h4>Result</h4>
-                  <p>Would Your Rather {question.optionOne.text} <br />
-                    <span>Quantity {question.optionOne.votes.length}</span>
-                  </p>
-                  <p>Would Your Rather {question.optionTwo.text} <br />
-                    <span>Quantity {question.optionTwo.votes.length}</span>
-                  </p>
+                  <div className='resultContainer'>
+                    <div
+                      className={ownOption === 'optionOne' ? 'hightlight' : ''}
+                    >Would Your Rather {question.optionOne.text} <br />
+                      <ProgressBar 
+                        now={op1percent} 
+                        label={`${op1percent}% (${totOp1} vote${totOp1 > 1 ? 's' : ''})`} 
+                      />
+                    </div>
+                    <div
+                      className={ownOption === 'optionTwo' ? 'hightlight' : ''}
+                    >Would Your Rather {question.optionTwo.text} <br />
+                      <ProgressBar 
+                        now={op2percent} 
+                        label={`${op2percent}% (${totOp2} vote${totOp2 > 1 ? 's' : ''})`} 
+                      />
+                    </div>
+                  </div>
                 </div>
               )}
             </div>
@@ -90,8 +124,8 @@ class Question extends Component {
                     alt={user.name}
                     src={user.avatarURL}
                     circle
-                    height={120}
-                    width={120} />
+                    height={120} width={120} 
+                  />
                   <h4>Would You Rather ...</h4>
                   <form onSubmit={this.handleSubmit}>
                     <div className='radioFormGroup'>

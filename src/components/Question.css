@@ -1,4 +1,5 @@
-.questionPendingContainer {
+.questionPendingContainer,
+.questionResultContainer {
   text-align: center;
   max-width: 400px;
   margin-left: auto;
@@ -14,4 +15,25 @@
 
 .questionPendingContainer .radioFormGroup > .form-group {
   margin-bottom: 0;
+}
+
+.questionResultContainer .resultContainer > div {
+  padding: 10px;
+}
+
+.questionResultContainer .resultContainer .hightlight {
+  border: yellowgreen solid 5px;
+  border-radius: 10px;
+}
+
+.questionResultContainer .resultContainer .progress {
+  margin-bottom: 10px;
+}
+
+.questionResultContainer .resultContainer .hightlight::after {
+  content: 'Your Vote';
+  background-color: yellowgreen;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
 }
