@@ -12,7 +12,7 @@ In order to run this application just clone the code and only follow the next tw
 
 1) Install the required dependencies
 
->`npm i`
+>`npm install`
 
 2) Run the application
 
