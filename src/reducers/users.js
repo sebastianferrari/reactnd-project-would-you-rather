@@ -11,7 +11,7 @@ export default function users(state = {}, action) {
         ...state,
         ...action.users
       } 
-    case ADD_ANSWER:
+    case ADD_ANSWER: {
       const { authedUser, qid, answer } = action
 
       return {
@@ -21,6 +21,7 @@ export default function users(state = {}, action) {
           answers: Object.assign({ [qid]: answer }, state[authedUser].answers)
         }
       }
+    }
     case ADD_QUESTION_TO_USER_QUESTIONS:
       return {
         ...state,
