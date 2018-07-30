@@ -11,9 +11,21 @@ import Nav from './Nav'
 import './App.css'
 import LeaderBoard from './LeaderBoard';
 
+const LoggedIn = () => (
+  <Fragment>
+    <Nav />
+    <div className='innerContent'>
+      <Route path='/' exact component={Dashboard} />
+      <Route path='/question/:questionId' exact component={Question} />
+      <Route path='/add' exact component={NewQuestion} />
+      <Route path='/leaderboard' exact component={LeaderBoard} />
+    </div>
+  </Fragment>
+)
+
 class App extends Component {
   componentDidMount() {
-    this.props.dispatch(handleInitialData())
+    this.props.getData()
   }
 
   render() {
@@ -27,20 +39,18 @@ class App extends Component {
                 <Login />
               )
               : (
-                <Fragment>
-                  <Nav />
-                  <div className='innerContent'>
-                    <Route path='/' exact component={Dashboard} />
-                    <Route path='/question/:questionId' exact component={Question} />
-                    <Route path='/add' exact component={NewQuestion} />
-                    <Route path='/leaderboard' exact component={LeaderBoard} />
-                  </div>
-                </Fragment>
+                <LoggedIn />
               )}
           </div>
         </Fragment>
       </Router>
     );
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getData: () => dispatch(handleInitialData())
   }
 }
 
@@ -51,4 +61,4 @@ function mapStateToProps({ loggedUser }) {
   }
 }
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
