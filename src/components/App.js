@@ -11,14 +11,14 @@ import Nav from './Nav'
 import './App.css'
 import LeaderBoard from './LeaderBoard';
 
-const LoggedIn = () => (
+const LoggedIn = ({ users }) => (
   <Fragment>
     <Nav />
     <div className='innerContent'>
       <Route path='/' exact component={Dashboard} />
       <Route path='/question/:questionId' exact component={Question} />
       <Route path='/add' exact component={NewQuestion} />
-      <Route path='/leaderboard' exact component={LeaderBoard} />
+      <Route path='/leaderboard' exact render={(props) => <LeaderBoard {...props} users={users} /> } />
     </div>
   </Fragment>
 )
@@ -39,7 +39,7 @@ class App extends Component {
                 <Login />
               )
               : (
-                <LoggedIn />
+                <LoggedIn users={this.props.users} />
               )}
           </div>
         </Fragment>
@@ -54,9 +54,10 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-function mapStateToProps({ loggedUser }) {
+function mapStateToProps({ loggedUser, users }) {
   return {
     loggedUser,
+    users,
     loading: loggedUser === null
   }
 }

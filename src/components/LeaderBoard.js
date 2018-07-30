@@ -1,31 +1,28 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 import LeaderBoardItem from './LeaderBoardItem';
 import './LeaderBoard.css'
 
-class LeaderBoard extends Component {
-  render() {
-    const { users, sortedUsers } = this.props
-
-    return (
-      <div className='leaderboard-list'>
-        {sortedUsers.map(user => (
-          <LeaderBoardItem key={users[user].id} user={users[user]} />
-        ))}
-      </div>
-    )
-  }
-}
-
-function mapStateToProps({ users }) {
-  return {
-    users,
-    sortedUsers: Object.keys(users).sort((a,b) => 
-      (users[b].questions.length + Object.keys(users[b].answers).length) 
-      - 
+const getSortedUsers = (users) => {
+  if (users && Object.keys(users).length > 0) {
+    return Object.keys(users).sort((a, b) =>
+      (users[b].questions.length + Object.keys(users[b].answers).length)
+      -
       (users[a].questions.length + Object.keys(users[a].answers).length)
     )
   }
+  return []
 }
 
-export default connect(mapStateToProps)(LeaderBoard)
+const LeaderBoard = (props) => {
+  console.log('USERS====> ', props)
+  const sortedUsers = getSortedUsers(props.users)
+  return (
+    <div className='leaderboard-list'>
+      {sortedUsers.map(user => (
+        <LeaderBoardItem key={props.users[user].id} user={props.users[user]} />
+      ))}
+    </div>
+  )
+}
+
+export default LeaderBoard
