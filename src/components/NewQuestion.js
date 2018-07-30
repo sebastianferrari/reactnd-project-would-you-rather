@@ -6,28 +6,33 @@ import {
   FormControl,
   Button
 } from 'react-bootstrap'
+import './NewQuestion.css'
+
+const defaultState = {
+  option1Text: '',
+  option2Text: '',
+  toHome: false
+}
 
 class NewQuestion extends Component {
   state = {
-    option1Text: '',
-    option2Text: '',
-    toHome: false
+    ...defaultState
   }
 
   handleOption1Change = (e) => {
     const option1Text = e.target.value
 
-    this.setState(() => ({
+    this.setState({
       option1Text
-    }))
+    })
   }
 
   handleOption2Change = (e) => {
     const option2Text = e.target.value
 
-    this.setState(() => ({
+    this.setState({
       option2Text
-    }))
+    })
   }
 
   handleSubmit = (e) => {
@@ -38,11 +43,10 @@ class NewQuestion extends Component {
     
     dispatch(handleAddQuestion(option1Text, option2Text))
 
-    this.setState(() => ({
-      option1Text: '',
-      option2Text: '',
+    this.setState({
+      ...defaultState,
       toHome: true
-    }))
+    })
   }
 
   render() {
@@ -50,15 +54,8 @@ class NewQuestion extends Component {
       return <Redirect to='/' />
     }
 
-    let center = {
-      textAlign: 'center',
-      maxWidth: '500px',
-      marginLeft: 'auto',
-      marginRight: 'auto'
-    }
-
     return (
-      <div style={center}>
+      <div className='new-question'>
         <h2>Create New Question</h2>
         <p>Complete the Question:</p>
         <h3>Would you rather ...</h3>
