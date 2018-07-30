@@ -1,7 +1,7 @@
 import {
   SET_LOGGED_USER,
   ADD_ANSWER_TO_LOGGED_USER
-} from "../actions/loggedUser";
+} from "../actions/actionTypes";
 
 export default function loggedUser(state = {}, action) {
   switch (action.type) {

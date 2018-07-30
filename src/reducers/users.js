@@ -2,7 +2,7 @@ import {
   RECEIVE_USERS,
   ADD_ANSWER,
   ADD_QUESTION_TO_USER_QUESTIONS
-} from "../actions/users";
+} from "../actions/actionTypes";
 
 export default function users(state = {}, action) {
   switch (action.type) {

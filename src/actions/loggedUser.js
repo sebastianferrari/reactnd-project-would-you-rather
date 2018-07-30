@@ -1,5 +1,7 @@
-export const SET_LOGGED_USER = 'SET_LOGGED_USER'
-export const ADD_ANSWER_TO_LOGGED_USER = 'ADD_ANSWER_TO_LOGGED_USER'
+import {
+  SET_LOGGED_USER,
+  ADD_ANSWER_TO_LOGGED_USER
+} from './actionTypes'
 
 function setLoggedUser (loggedUser) {
   return {
