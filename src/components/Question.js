@@ -10,18 +10,24 @@ import {
   ProgressBar
 } from 'react-bootstrap'
 import { computeValues } from '../utils/helpers'
+import { Redirect } from 'react-router-dom'
 
 class Question extends Component {
   state = {
     selectedOption: '',
-    answered: false
+    answered: false,
+    redirectTo404: false
   }
 
   componentWillMount() {
     const { questions, loggedUserId } = this.props
     const question = questions[this.props.id]
-    
-    if (question.optionOne.votes.includes(loggedUserId)
+
+    if (question === undefined) {
+      this.setState({
+        redirectTo404: true
+      })
+    } else if (question.optionOne.votes.includes(loggedUserId)
       || question.optionTwo.votes.includes(loggedUserId)) {
       this.setState(() => ({
         answered: true
@@ -54,6 +60,10 @@ class Question extends Component {
   }
 
   render() {
+    if (this.state.redirectTo404) {
+      return <Redirect to='/pageNotFound' />
+    }
+
     const { users, questions } = this.props
     const question = questions[this.props.id]
     const user = question && users[question.author]

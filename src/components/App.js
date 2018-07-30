@@ -10,6 +10,7 @@ import NewQuestion from './NewQuestion'
 import Nav from './Nav'
 import './App.css'
 import LeaderBoard from './LeaderBoard';
+import ErrorPage from './ErrorPage'
 
 const LoggedIn = ({ users }) => (
   <Fragment>
@@ -19,6 +20,7 @@ const LoggedIn = ({ users }) => (
       <Route path='/question/:questionId' exact component={Question} />
       <Route path='/add' exact component={NewQuestion} />
       <Route path='/leaderboard' exact render={(props) => <LeaderBoard {...props} users={users} /> } />
+      <Route path='/pageNotFound' exact component={ErrorPage} />
     </div>
   </Fragment>
 )
