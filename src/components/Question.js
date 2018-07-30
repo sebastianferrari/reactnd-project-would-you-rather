@@ -9,11 +9,24 @@ import {
   Button,
   ProgressBar
 } from 'react-bootstrap'
+import { computeValues } from '../utils/helpers'
 
 class Question extends Component {
   state = {
     selectedOption: '',
     answered: false
+  }
+
+  componentWillMount() {
+    const { questions, loggedUserId } = this.props
+    const question = questions[this.props.id]
+    
+    if (question.optionOne.votes.includes(loggedUserId)
+      || question.optionTwo.votes.includes(loggedUserId)) {
+      this.setState(() => ({
+        answered: true
+      }))
+    }
   }
 
   handleOptionChange = (e) => {
@@ -40,35 +53,26 @@ class Question extends Component {
     }))
   }
 
-  componentWillMount() {
-    const { questions, loggedUserId } = this.props
-    const question = questions[this.props.id]
-    
-    if (question.optionOne.votes.includes(loggedUserId)
-      || question.optionTwo.votes.includes(loggedUserId)) {
-      this.setState(() => ({
-        answered: true
-      }))
-    }
-  }
-
   render() {
     const { users, questions } = this.props
     const question = questions[this.props.id]
     const user = question && users[question.author]
 
-    let ownOption;
-    if (question.optionOne.votes.includes(user.id)) {
-      ownOption = 'optionOne'
-    } else if (question.optionTwo.votes.includes(user.id)) {
-      ownOption = 'optionTwo'
-    }
+    const ownOption = (() => {
+      if (question.optionOne.votes.includes(user.id)) {
+        return 'optionOne'
+      } else if (question.optionTwo.votes.includes(user.id)) {
+        return 'optionTwo'
+      }
+    })();
 
-    let totOp1 = question.optionOne.votes.length
-    let totOp2 = question.optionTwo.votes.length
-    let total = totOp1 + totOp2
-    let op1percent = Math.round((totOp1 * 100) / total)
-    let op2percent = Math.round((totOp2 * 100) / total)
+    // let totOp1 = question.optionOne.votes.length
+    // let totOp2 = question.optionTwo.votes.length
+    // let total = totOp1 + totOp2
+    // let op1percent = Math.round((totOp1 * 100) / total)
+    // let op2percent = Math.round((totOp2 * 100) / total)
+
+    const { totOp1, totOp2, op1percent, op2percent } = computeValues(question) 
 
     return (
       <div>
