@@ -5,9 +5,9 @@ import {
 import './LeaderBoardItem.css'
 
 const LeaderBoardItem = ({ user }) => {
-  let questionQty = user.questions.length
-  let answerQty = Object.keys(user.answers).length
-  let total = questionQty + answerQty
+  const questionQty = user.questions.length
+  const answerQty = Object.keys(user.answers).length
+  const total = questionQty + answerQty
 
   const scoreTable = (
     <Table id='score-table'>
